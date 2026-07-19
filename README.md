@@ -17,7 +17,7 @@ In urban traffic management, distinguishing between vehicle types is vital for f
 
 Below is a demonstration of the web application processing a standard traffic scene, accurately localizing overlapping vehicle classes with tight bounding boxes:
 
-![App Preview]()
+![Image](https://github.com/HessaFK/traffic-object-detector/blob/main/traffic-object-detector-demo.png)
 
 ## Live web App (Rendor Deployment)
 
@@ -55,9 +55,9 @@ The dataset is compiled, labeled, and split (70% Train, 20% Validation, 10% Test
 ## Performance Summary
 The model converged smoothly over a 50-epoch training schedule, with the following results:
 
-car - 358 Instance Count - 69.1% precision, 69.8% recall, 72.8% accuracy
-bike(Motorcycle) - 147 Instance Count - 44.1% precision - 36.1% Recall - 31.9% accuracy
-Combined (All) - 505 Instance Count - 56.6% precision - 52.9% recall - 52.4% accuracy
+* car - 358 Instance Count - 69.1% precision, 69.8% recall, 72.8% accuracy
+* bike(Motorcycle) - 147 Instance Count - 44.1% precision - 36.1% Recall - 31.9% accuracy
+* combined (All) - 505 Instance Count - 56.6% precision - 52.9% recall - 52.4% accuracy
 
 
 ## Known Issues and Limitations 
