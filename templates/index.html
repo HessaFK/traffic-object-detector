@@ -71,7 +71,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* --- Loading Spinner Styles --- */
+        
         #loading-screen {
             margin: 30px auto;
         }
@@ -101,14 +101,13 @@
             <button type="submit">Upload & Analyze</button>
         </form>
 
-        <!-- Dynamic Loader: Hidden by default, appears on submit -->
+        
         <div id="loading-screen" style="display: none;">
             <div class="spinner"></div>
             <p style="color: #555; font-weight: bold;">AI is analyzing traffic density... Please wait.</p>
         </div>
     </div>
 
-    <!-- This section only appears AFTER the user uploads an image -->
     {% if input_image and output_image %}
     
         <!-- Dynamic Object Badges Section -->
@@ -134,13 +133,12 @@
         </div>
     {% endif %}
 
-    <!-- JavaScript to handle showing the loading screen -->
     <script>
         document.getElementById('upload-form').addEventListener('submit', function() {
             // Display the loader
             document.getElementById('loading-screen').style.display = 'block';
             
-            // Optional: Hide any previous results while loading a new image
+    
             const existingResults = document.querySelector('.result-container');
             const existingBadges = document.querySelector('.badge-container');
             if (existingResults) existingResults.style.opacity = '0.4';
