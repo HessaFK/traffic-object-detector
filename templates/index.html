@@ -52,6 +52,42 @@
         button:hover {
             background-color: #0056b3;
         }
+
+        /* --- Object Badge Styles --- */
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0 10px 0;
+            flex-wrap: wrap;
+        }
+        .badge {
+            background-color: #28a745; /* Clean green accent color */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* --- Loading Spinner Styles --- */
+        #loading-screen {
+            margin: 30px auto;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007BFF;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -60,25 +96,57 @@
     <p>Upload a photo to detect cars and bikes using YOLOv8.</p>
 
     <div class="upload-box">
-        <form action="/" method="POST" enctype="multipart/form-data">
+        <form id="upload-form" action="/" method="POST" enctype="multipart/form-data">
             <input type="file" name="file" accept="image/*" required>
             <button type="submit">Upload & Analyze</button>
         </form>
+
+        <!-- Dynamic Loader: Hidden by default, appears on submit -->
+        <div id="loading-screen" style="display: none;">
+            <div class="spinner"></div>
+            <p style="color: #555; font-weight: bold;">AI is analyzing traffic density... Please wait.</p>
+        </div>
     </div>
 
     <!-- This section only appears AFTER the user uploads an image -->
     {% if input_image and output_image %}
-    <div class="result-container">
-        <div class="img-card">
-            <h3>Original Image</h3>
-            <img src="{{ input_image }}" alt="Original Image">
+    
+        <!-- Dynamic Object Badges Section -->
+        {% if counts %}
+        <div class="badge-container">
+            {% for object_name, count in counts.items() %}
+                <span class="badge">
+                    {{ object_name }}: {{ count }}
+                </span>
+            {% endfor %}
         </div>
-        <div class="img-card">
-            <h3>AI Detection Result</h3>
-            <img src="{{ output_image }}" alt="Processed Image">
+        {% endif %}
+
+        <div class="result-container">
+            <div class="img-card">
+                <h3>Original Image</h3>
+                <img src="{{ input_image }}" alt="Original Image">
+            </div>
+            <div class="img-card">
+                <h3>AI Detection Result</h3>
+                <img src="{{ output_image }}" alt="Processed Image">
+            </div>
         </div>
-    </div>
     {% endif %}
+
+    <!-- JavaScript to handle showing the loading screen -->
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function() {
+            // Display the loader
+            document.getElementById('loading-screen').style.display = 'block';
+            
+            // Optional: Hide any previous results while loading a new image
+            const existingResults = document.querySelector('.result-container');
+            const existingBadges = document.querySelector('.badge-container');
+            if (existingResults) existingResults.style.opacity = '0.4';
+            if (existingBadges) existingBadges.style.display = 'none';
+        });
+    </script>
 
 </body>
 </html>
