@@ -1,4 +1,4 @@
-#Traffic Object Detector (Cars vs. Motorcycle)
+# Traffic Object Detector (Cars vs. Motorcycle)
 
 It is an end-to-end computer vision application designed to detect and distinguish between cars and motorcycles in real-world traffic streams. Developed initially in Google Colab using a custom dataset, this model has been containerized using Flask and Docker and is designed for seamless local deployment and web hosting.
 
