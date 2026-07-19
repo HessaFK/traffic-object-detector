@@ -1,0 +1,13 @@
+# Ignore python cache files
+__pycache__/
+*.pyc
+
+# Ignore local uploaded and processed images 
+static/uploads/*
+# But keep the placeholder image if you put it there
+!static/uploads/preview_placeholder.png
+
+# Ignore virtual environments if you have one
+venv/
+.venv/
+.DS_Store
